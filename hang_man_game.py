@@ -7,7 +7,8 @@ attempts = 8
 incorrect_guesses = []
 score = 0
 
-print("Welcome to Hangman!")
+print("Welcome to Hangman! This game is about guessing letters from a programming language.")
+print("Let's see if you can uncover the secret word. Enter a letter to begin.")
 
 while attempts > 0 and '_' in word_display:
     print("\n" + ''.join(word_display))
