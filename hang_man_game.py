@@ -1,35 +1,105 @@
 import random
 
-words = ["python", "java", "kotlin", "javascript", "ruby", "swift"]
-chosen_word = random.choice(words)
-word_display = ['_' for _ in chosen_word]
-attempts = 8
-incorrect_guesses = []
-score = 0
+# Hangman stages (visual representation)
+HANGMAN_PICS = [
+    """
+     +---+
+         |
+         |
+         |
+        ===""",
+    """
+     +---+
+     O   |
+         |
+         |
+        ===""",
+    """
+     +---+
+     O   |
+     |   |
+         |
+        ===""",
+    """
+     +---+
+     O   |
+    /|   |
+         |
+        ===""",
+    """
+     +---+
+     O   |
+    /|\\  |
+         |
+        ===""",
+    """
+     +---+
+     O   |
+    /|\\  |
+    /    |
+        ===""",
+    """
+     +---+
+     O   |
+    /|\\  |
+    / \\  |
+        ==="""
+]
 
-print("Welcome to Hangman! This game is about guessing letters from a programming language.")
-print("Let's see if you can uncover the secret word. Enter a letter to begin.")
+# Word list (you can expand it)
+WORDS = ["python", "programming", "hangman", "student", "developer", "github"]
 
-while attempts > 0 and '_' in word_display:
-    print("\n" + ''.join(word_display))
-    guess = input("Guess a letter: ").lower()
+def choose_word():
+    return random.choice(WORDS)
 
-    if guess in chosen_word:
-        for index, letter in enumerate(chosen_word):
-            if letter == guess:
-                word_display[index] = guess
+def play_hangman():
+    word = choose_word()
+    guessed = ["_"] * len(word)
+    guessed_letters = set()
+    attempts = len(HANGMAN_PICS) - 1
+
+    print("🎮 Welcome to Hangman Game!")
+    print("Guess the word, one letter at a time.\n")
+
+    while attempts > 0 and "_" in guessed:
+        print(HANGMAN_PICS[len(HANGMAN_PICS) - 1 - attempts])
+        print("Word:", " ".join(guessed))
+        print(f"Attempts left: {attempts}")
+        print(f"Guessed letters: {', '.join(sorted(guessed_letters))}\n")
+
+        guess = input("Enter a letter: ").lower()
+
+        if not guess.isalpha() or len(guess) != 1:
+            print("⚠️ Please enter a single letter.\n")
+            continue
+
+        if guess in guessed_letters:
+            print("⚠️ You already guessed that letter.\n")
+            continue
+
+        guessed_letters.add(guess)
+
+        if guess in word:
+            print("✅ Good guess!\n")
+            for i, letter in enumerate(word):
+                if letter == guess:
+                    guessed[i] = guess
+        else:
+            print("❌ Wrong guess!\n")
+            attempts -= 1
+
+    # End of game
+    if "_" not in guessed:
+        print("🎉 Congratulations! You guessed the word:", word)
     else:
-        print("The letter does not exist")
-        if guess not in incorrect_guesses:
-            incorrect_guesses.append(guess)
-        attempts -= 1
+        print(HANGMAN_PICS[-1])
+        print("💀 Game Over! The word was:", word)
 
-if '_' not in word_display:
-    score = attempts * 10  # Assign points based on remaining attempts
-    print("You guessed the word")
-    print(''.join(word_display))
-    print("You survived!")
-    print("Your score:", score)
-else:
-    print("You ran out of attempts. The word was:", chosen_word)
-    print("You lost. Try again!")
+# Main loop
+if __name__ == "__main__":
+    while True:
+        play_hangman()
+        again = input("\nDo you want to play again? (yes/no): ").lower()
+        if again != "yes":
+            print("👋 Thanks for playing Hangman!")
+            break
