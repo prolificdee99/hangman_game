@@ -1,35 +1,43 @@
-#Hangman Game
+ 🎮 Hangman Game
 
-#Overview
-This Hangman game is a simple console-based Python application that allows players to guess a randomly selected word within a limited number of attempts.
+A simple console-based Python Hangman game where players try to guess a randomly chosen word before running out of attempts.  
 
-#Features
-Randomly selects a word from a predefined list.
-Displays the word with underscores representing each letter.
-Tracks incorrect guesses and remaining attempts.
-Calculates a score based on the number of remaining attempts when the word is guessed correctly.
+## 🚀 Play Online
+You can play the game instantly in your browser using Replit:  
 
-#Usage
-Clone Repository: Clone this repository to your local machine using the command:
-git clone https://github.com/prolificdee99/hangman_game.git
-Navigate to Directory: Open a terminal or command prompt and navigate to the directory containing the game files.
-Run the Game: Execute the game script using the command:
-python hangman.py
-Play the Game: Follow the prompts to guess letters and try to guess the word before running out of attempts.
+[![Run on Replit](https://replit.com/badge/github/prolificdee99/hangman_game)](https://replit.com/@prolificdee99/hangman_game)
 
-#Game Mechanics
-The game starts with 8 attempts.
-Players input letters to guess the word.
-Correctly guessed letters are revealed in the word display.
-Incorrect guesses reduce the remaining attempts.
-The game ends when the word is guessed correctly or all attempts are used.
+## 📌 Features
+- Randomly selects a word from a predefined list  
+- Displays the word with underscores representing hidden letters  
+- Tracks incorrect guesses and remaining attempts  
+- Fun **ASCII art hangman stages** as the player loses lives  
+- Calculates win/lose outcome with encouraging messages  
+- Option to play multiple rounds  
 
-#File Structure
-hangman.py: Main Python script containing the Hangman game logic.
-README.md: This file, providing instructions and information about the game.
+## ▶️ How to Run Locally
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/prolificdee99/hangman_game.git
+Navigate to the project directory:
 
-#Dependencies
-Python 3.x
+2. cd hangman_game
+Run the game:
+3. python hangman.py
+   
+## 🛠 Requirements
+Python 3.x installed
 
-#Contributing
-Contributions are welcome! If you'd like to improve the game or add new features, feel free to fork the repository and submit a pull request.
+## 📂 File Structure
+hangman_game/
+│-- hangman.py    # Main Python script
+│-- README.md     # Documentation
+
+
+## 🤝 Contributing
+Contributions are welcome!
+1. Fork the repository
+2. Create a new branch: git checkout -b feature/your-feature
+3. Commit changes: git commit -m 'Add new feature'
+4. Push to branch: git push origin feature/your-feature
+5. Open a Pull Request
